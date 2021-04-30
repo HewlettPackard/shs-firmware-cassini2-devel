@@ -27,6 +27,7 @@ struct cuc_pkt {
 
 enum {
 	CUC_CMD_PING = 0,                       /* Perform a simple ping to the uC firmware */
+	CUC_CMD_BOARD_INFO = 1,                 /* Get board identification info */
 	CUC_CMD_GET_FRU = 25,                   /* Get the FRU information for the device */
 	CUC_CMD_SET_FAN_PWM = 26,               /* Set fan to fixed speed w/ given PWM duty cycle */
 	CUC_CMD_GET_FAN_RPM = 27,               /* Get the latest fan RPM value */
@@ -56,6 +57,16 @@ enum {
 struct cuc_error_rsp_data {
 	u8 error;  /* The POSIX errno that best describes the error */
 };
+
+enum {
+	CUC_BOARD_TYPE_SAWTOOTH = 0,
+	CUC_BOARD_TYPE_BRAZOS = 1,
+};
+
+struct cuc_board_info_rsp {
+	u8 board_type;
+	u8 board_rev;
+} __packed;
 
 struct cuc_set_fan_pwm_req_data {
 	/* PWM duty cycle value to set
