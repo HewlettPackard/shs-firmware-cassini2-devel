@@ -28,6 +28,7 @@ struct cuc_pkt {
 enum {
 	CUC_CMD_PING = 0,                       /* Perform a simple ping to the uC firmware */
 	CUC_CMD_BOARD_INFO = 1,                 /* Get board identification info */
+	CUC_CMD_GET_LOG = 12,                   /* Get a log message from the uC */
 	CUC_CMD_GET_FRU = 25,                   /* Get the FRU information for the device */
 	CUC_CMD_SET_FAN_PWM = 26,               /* Set fan to fixed speed w/ given PWM duty cycle */
 	CUC_CMD_GET_FAN_RPM = 27,               /* Get the latest fan RPM value */
@@ -45,7 +46,8 @@ enum {
 	CUC_CMD_FIRMWARE_UPDATE_STATUS = 53,    /* Get status of firmware update */
 	CUC_CMD_RESET = 54,                     /* Reset the uC */
 	CUC_CMD_SET_LED = 58,                   /* Control the blink pattern (state) of an LED */
-	CUC_CMD_GET_NIC_ID = 60                 /* Get the NIC ID associated with this interface */
+	CUC_CMD_GET_NIC_ID = 60,                /* Get the NIC ID associated with this interface */
+	CUC_CMD_GET_TIMINGS = 61,               /* Get the power-on and initialization timings in usec */
 };
 
 enum {
@@ -257,5 +259,29 @@ struct cuc_set_led_req {
 struct cuc_get_nic_id_rsp {
 	u8 nic;  /* The requested NIC ID */
 } __packed;
+
+enum cuc_timing_entries {
+    TIMING_UC_APPLICATION_STARTED,
+    TIMING_UC_PIN_INIT_COMPLETE,
+    TIMING_UC_FW_INIT_COMPLETE,
+    TIMING_EN_CLKS_UC_ASSERTED,
+    TIMING_12V_PG,
+    TIMING_PG_CASSINI_ASSERTED,
+    TIMING_RST_PON_NIC_N_DEASSERTED,
+    TIMING_VID_STABLE_ASSERTED,
+    TIMING_PERST_NIC_0_N_DEASSERTED,
+    TIMING_PERST_NIC_1_N_DEASSERTED,
+    TIMING_JTAG_TRST_N_DEASSERTED,
+    TIMING_UC_CASSINI_RDY_NIC_0,
+    TIMING_UC_CASSINI_RDY_NIC_1,
+    TIMING_PCIE_LINK_UP_NIC_0,
+    TIMING_PCIE_LINK_UP_NIC_1,
+    TIMING_UPTIME,
+    TIMING_NUM_ENTRIES
+};
+
+struct cuc_get_timings_rsp {
+    uint64_t entries_us[TIMING_NUM_ENTRIES];
+} __attribute__((packed));
 
 #endif /* CUC_CXI_H */
