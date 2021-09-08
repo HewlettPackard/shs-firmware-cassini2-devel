@@ -60,6 +60,17 @@ enum pldm_platform_cmd {
 	PLDM_CMD_GET_PDR = 0x51
 };
 
+enum pldm_sensor_opstate {
+    PLDM_OPSTATE_ENABLED = 0,
+    PLDM_OPSTATE_DISABLED = 1,
+    PLDM_OPSTATE_UNAVAILABLE = 2,
+    PLDM_OPSTATE_STATUS_UNKNOWN = 3,
+    PLDM_OPSTATE_FAILED = 4,
+    PLDM_OPSTATE_INITIALIZING = 5,
+    PLDM_OPSTATE_SHUTTING_DOWN = 6,
+    PLDM_OPSTATE_IN_TEST = 7
+};
+
 /* GetSensorReading presentReading variable types (DSP0248 Table 30) */
 union sensor_value {
 	s8 value_SINT8;
