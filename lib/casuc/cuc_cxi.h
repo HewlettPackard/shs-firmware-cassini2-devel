@@ -63,6 +63,9 @@ struct cuc_error_rsp_data {
 enum {
 	CUC_BOARD_TYPE_SAWTOOTH = 0,
 	CUC_BOARD_TYPE_BRAZOS = 1,
+	CUC_BOARD_TYPE_WASHINGTON = 2,
+	CUC_BOARD_TYPE_KENNEBEC = 3,
+	CUC_BOARD_TYPE_PANGANI = 4,
 };
 
 struct cuc_board_info_rsp {
