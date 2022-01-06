@@ -1,10 +1,12 @@
 /* SPDX-License-Identifier: MIT */
 /* Copyright 2021 Hewlett Packard Enterprise Development LP */
 
-/* This file contains Platform Level Data Model (PLDM) definitions necessary to read numeric
- * sensors and parse FRU record data from the Cassini uC PLDM subsystem.
+/* This file contains Platform Level Data Model (PLDM) definitions
+ * necessary to read numeric sensors and parse FRU record data from
+ * the Cassini uC PLDM subsystem.
  *
- * More information can be found in the following DMTF documents (https://www.dmtf.org):
+ * More information can be found in the following DMTF documents
+ * (https://www.dmtf.org):
  * DSP0240 v1.0.0: PLDM Base Specification
  * DSP0245 v1.3.0: PLDM IDs and Codes Specification
  * DSP0248 v1.2.0: PLDM for Platform Monitoring and Control Specification
@@ -93,6 +95,25 @@ enum pldm_sensor_opstate {
     PLDM_OPSTATE_INITIALIZING = 5,
     PLDM_OPSTATE_SHUTTING_DOWN = 6,
     PLDM_OPSTATE_IN_TEST = 7
+};
+
+/* PLDM Sensor Units (Table 62 of DSP0248) */
+enum sensor_unit {
+    PLDM_UNIT_NONE = 0,
+    PLDM_UNIT_DEGREES_C = 2,
+    PLDM_UNIT_VOLTS = 5,
+    PLDM_UNIT_AMPS = 6,
+    PLDM_UNIT_WATTS = 7,
+};
+
+enum unit_modifier {
+    PLDM_MODIFIER_NANO = -9,
+    PLDM_MODIFIER_MICRO = -6,
+    PLDM_MODIFIER_MILLI = -3,
+    PLDM_MODIFIER_CENTI = -2,
+    PLDM_MODIFIER_DECI = -1,
+    PLDM_MODIFIER_NONE = 0,
+    PLDM_MODIFIER_KILO = 3,
 };
 
 /* GetSensorReading presentReading variable types (DSP0248 Table 30) */
