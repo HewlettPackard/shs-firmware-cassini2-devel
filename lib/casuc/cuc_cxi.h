@@ -61,6 +61,7 @@ struct cuc_error_rsp_data {
 };
 
 enum {
+	CUC_BOARD_TYPE_UNKNOWN = -1,
 	CUC_BOARD_TYPE_SAWTOOTH = 0,
 	CUC_BOARD_TYPE_BRAZOS = 1,
 	CUC_BOARD_TYPE_WASHINGTON = 2,
@@ -196,7 +197,7 @@ enum casuc_fw_target {
 	FW_CSR2,
 	FW_SRDS,
 	FW_ISL68124_SAW,
-	FW_ISL68124_BRZ,
+	FW_ISL68124_KEN,
 	FW_IR38060,
 	FW_NUM_ENTRIES
 };
