@@ -1,5 +1,5 @@
 /* SPDX-License-Identifier: MIT */
-/* Copyright 2021 Hewlett Packard Enterprise Development LP */
+/* Copyright 2021-2022 Hewlett Packard Enterprise Development LP */
 
 /* This file defines a set of commands and  request and response packet formats for
  * communicating with the Cassini uC over USB, SMBus, or the HSN.
