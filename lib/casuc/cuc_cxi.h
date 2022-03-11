@@ -69,6 +69,11 @@ enum {
 	CUC_BOARD_TYPE_PANGANI = 4,
 };
 
+#define is_cas1_board_type(bt) ( (bt == CUC_BOARD_TYPE_SAWTOOTH) || \
+								 (bt == CUC_BOARD_TYPE_BRAZOS) )
+#define is_cas2_board_type(bt) ( (bt == CUC_BOARD_TYPE_WASHINGTON) || \
+								 (bt == CUC_BOARD_TYPE_KENNEBEC) || \
+								 (bt == CUC_BOARD_TYPE_PANGANI) )
 struct cuc_board_info_rsp {
 	u8 board_type;
 	u8 board_rev;
@@ -187,7 +192,8 @@ struct cuc_firmware_update_start_req {
 	u8 slot;   /* The firmware slot to update */
 } __packed;
 
-/* The firmware (aka QSPI_BLOB) is composed of multiple, separately versioned components */
+/* The firmware (aka QSPI_BLOB) is composed of multiple, separately versioned components
+ * Not all of these targets are included in each blob. Blob contents are HW-specific. */
 enum casuc_fw_target {
 	FW_UC_APPLICATION,
 	FW_UC_BOOTLOADER,
@@ -197,10 +203,45 @@ enum casuc_fw_target {
 	FW_CSR2,
 	FW_SRDS,
 	FW_ISL68124_SAW,
-	FW_ISL68124_KEN,
-	FW_IR38060,
+	FW_ISL68124_BRZ,
+	FW_IR38060_QSFP_BRZ,
+	FW_IR38060 = FW_IR38060_QSFP_BRZ,
+	/* Start of CAS2-specific entries */
+	FW_TDA38740_WAS,
+	FW_IR38060_WAS,
+	FW_IR38063_WAS,
+	FW_TDA38740_KEN,
+	FW_IR38060_KEN,
+	FW_IR38063_KEN,
+	FW_IR38060_QSFP_KEN,
 	FW_NUM_ENTRIES
 };
+
+#define CAS1_BLOB_FW_TARGETS	FW_UC_APPLICATION, \
+								FW_UC_BOOTLOADER, \
+								FW_QSPI_BLOB, \
+								FW_OPROM, \
+								FW_CSR1, \
+								FW_CSR2, \
+								FW_SRDS, \
+								FW_ISL68124_SAW, \
+								FW_ISL68124_BRZ, \
+								FW_IR38060_QSFP_BRZ
+
+#define CAS2_BLOB_FW_TARGETS	FW_UC_APPLICATION, \
+								FW_UC_BOOTLOADER, \
+								FW_QSPI_BLOB, \
+								FW_OPROM, \
+								FW_CSR1, \
+								FW_CSR2, \
+								FW_SRDS, \
+								FW_TDA38740_WAS, \
+								FW_IR38060_WAS, \
+								FW_IR38063_WAS, \
+								FW_TDA38740_KEN, \
+								FW_IR38060_KEN, \
+								FW_IR38063_KEN, \
+								FW_IR38060_QSFP_KEN
 
 struct cuc_get_firmware_version_req {
 	u8 fw_target;   /* The component whose version is being requested */
