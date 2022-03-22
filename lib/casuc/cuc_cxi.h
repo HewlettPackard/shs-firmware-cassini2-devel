@@ -151,6 +151,7 @@ struct cuc_qsfp_reset_req_data {
 #define ATT1_QSFP_REMOVE                BIT(18)
 #define ATT1_QSFP_INT                   BIT(19)
 #define ATT1_QSFP_EPO_TEMPERATURE       BIT(20)
+#define ATT1_QSFP_BAD_CABLE             BIT(21)
 /* Bits 24 through 31 are reserved for other future use */
 #define ATT1_ALL_INTERRUPTS             (0xFFFFFFFF)
 
