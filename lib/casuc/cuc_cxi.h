@@ -214,7 +214,8 @@ enum casuc_fw_target {
 	FW_TDA38740_KEN,
 	FW_IR38060_KEN,
 	FW_IR38063_KEN,
-	FW_IR38060_QSFP_KEN,
+	FW_RESERVED, /* deprecated - FW_IR38060_QSFP_KEN */
+	FW_MFPGA_WAS,
 	FW_NUM_ENTRIES
 };
 
@@ -242,7 +243,7 @@ enum casuc_fw_target {
 								FW_TDA38740_KEN, \
 								FW_IR38060_KEN, \
 								FW_IR38063_KEN, \
-								FW_IR38060_QSFP_KEN
+								FW_MFPGA_WAS
 
 struct cuc_get_firmware_version_req {
 	u8 fw_target;   /* The component whose version is being requested */
