@@ -14,6 +14,30 @@
 #ifndef PLDM_CXI_H
 #define PLDM_CXI_H
 
+#define C_MASK(XVAL, XBIT) XVAL##_MASK = (1 << XBIT)
+#define C_ENUM(XNAME, XVAL) XNAME = XVAL
+
+#define PLDM_THRESHOLD_LIST \
+    C(PLDM_THRESHOLD_UPPER_WARNING, 0), \
+    C(PLDM_THRESHOLD_UPPER_CRITICAL, 1), \
+    C(PLDM_THRESHOLD_UPPER_FATAL, 2), \
+    C(PLDM_THRESHOLD_LOWER_WARNING, 3), \
+    C(PLDM_THRESHOLD_LOWER_CRITICAL, 4), \
+    C(PLDM_THRESHOLD_LOWER_FATAL, 5)
+
+#define C C_ENUM
+enum pldm_threshold {
+    PLDM_THRESHOLD_LIST,
+    PLDM_THRESHOLD_COUNT
+};
+#undef C
+
+#define C C_MASK
+enum {
+    PLDM_THRESHOLD_LIST
+};
+#undef C
+
 /* Generic PLDM Message Fields (DSP0240 Figure 1) */
 struct pldm_hdr {
 	u8 instance_id:5;
