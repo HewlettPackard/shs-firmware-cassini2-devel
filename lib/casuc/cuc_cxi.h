@@ -54,6 +54,7 @@ enum {
 	CUC_TYPE_REQ,          /* Request packet */
 	CUC_TYPE_RSP_SUCCESS,  /* Success response packet */
 	CUC_TYPE_RSP_ERROR,    /* Error response packet */
+	CUC_TYPE_RSP_PLDM,     /* PLDM response packet */
 };
 
 struct cuc_error_rsp_data {
