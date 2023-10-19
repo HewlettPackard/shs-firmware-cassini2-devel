@@ -1,5 +1,5 @@
 /* SPDX-License-Identifier: MIT */
-/* Copyright 2021-2022 Hewlett Packard Enterprise Development LP */
+/* Copyright 2021-2023 Hewlett Packard Enterprise Development LP */
 
 /* This file defines a set of commands and  request and response packet formats for
  * communicating with the Cassini uC over USB, SMBus, or the HSN.
@@ -68,13 +68,15 @@ enum {
 	CUC_BOARD_TYPE_WASHINGTON = 2,
 	CUC_BOARD_TYPE_KENNEBEC = 3,
 	CUC_BOARD_TYPE_PANGANI = 4,
+	CUC_BOARD_TYPE_SOUHEGAN = 5,
 };
 
 #define is_cas1_board_type(bt) ( (bt == CUC_BOARD_TYPE_SAWTOOTH) || \
 								 (bt == CUC_BOARD_TYPE_BRAZOS) )
 #define is_cas2_board_type(bt) ( (bt == CUC_BOARD_TYPE_WASHINGTON) || \
 								 (bt == CUC_BOARD_TYPE_KENNEBEC) || \
-								 (bt == CUC_BOARD_TYPE_PANGANI) )
+								 (bt == CUC_BOARD_TYPE_PANGANI) || \
+								 (bt == CUC_BOARD_TYPE_SOUHEGAN) )
 struct cuc_board_info_rsp {
 	u8 board_type;
 	u8 board_rev;
