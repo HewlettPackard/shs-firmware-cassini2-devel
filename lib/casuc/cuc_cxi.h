@@ -283,6 +283,8 @@ struct cuc_firmware_update_status_rsp {
 
 enum casuc_leds {
 	LED_LINK_STATUS = 0,
+	LED_OCP_LINK_STATUS = 1,
+	LED_OCP_ACTIVITY_STATUS = 2,
 };
 
 /* GRN represents the nominal color and YEL represents the alternate color. Slow blinking
