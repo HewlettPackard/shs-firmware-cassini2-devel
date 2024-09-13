@@ -128,7 +128,7 @@ struct cuc_qsfp_write_req_data {
 	u8 page;     /* Page select for writing */
 	u8 addr;     /* Start address for writing */
 	u8 count;    /* Number of bytes to write */
-	u8 data[0];  /* Data to be written */
+	u8 data[];   /* Data to be written */
 } __packed;
 
 struct cuc_qsfp_reset_req_data {

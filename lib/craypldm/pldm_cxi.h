@@ -164,7 +164,7 @@ struct get_pdr_rsp {
 	u32 next_data_transfer_handle;
 	u8 transfer_flag;
 	u16 response_count;
-	u8 record_data[0];
+	u8 record_data[];
 } __packed;
 
 /* GetPDR transferOperationFlag values (DSP0248 Table 68) */
@@ -332,7 +332,7 @@ struct aux_name_pdr {
 struct pldm_fru_field {
 	u8 field_type;
 	u8 length;
-	u8 value[0];
+	u8 value[];
 } __packed;
 
 /* PLDM FRU Record Data Format (DSP0257 Table 2) */
@@ -341,7 +341,7 @@ struct pldm_fru_record {
 	u8 record_type;
 	u8 num_fields;
 	u8 field_encoding;
-	u8 field_data[0];
+	u8 field_data[];
 } __packed;
 
 /* FRU Record Types (DSP0257 Table 4) */
