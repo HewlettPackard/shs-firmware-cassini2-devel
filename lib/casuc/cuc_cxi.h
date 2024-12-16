@@ -1,5 +1,5 @@
 /* SPDX-License-Identifier: MIT */
-/* Copyright 2021-2023 Hewlett Packard Enterprise Development LP */
+/* Copyright 2021-2024 Hewlett Packard Enterprise Development LP */
 
 /* This file defines a set of commands and  request and response packet formats for
  * communicating with the Cassini uC over USB, SMBus, or the HSN.
@@ -176,7 +176,7 @@ struct cuc_clear_isr_req_data {
 } __packed;
 
 struct cuc_update_ier_req_data {
-	u8 nic;              /* The NIC who iterrupt enables are being updated */
+	u8 nic;              /* The NIC whose interrupt enables are being updated */
 	u32 ier_set_bits;    /* Interrupt bits to enable */
 	u32 ier_clear_bits;  /* Interrupt bits to disable */
 } __packed;
