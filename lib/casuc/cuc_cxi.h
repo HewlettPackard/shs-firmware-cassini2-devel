@@ -10,6 +10,10 @@
 
 #define CUC_DATA_BYTES  253
 
+// I2C reads and writes to QSFP use a bus number of 0xFF because
+// the actual bus number may not be known by the requester
+#define QSFP_I2C_BUS_REDIRECT      0xFF
+
 /**
  * struct cuc_pkt - Cassini uC Packet Format
  *
@@ -28,6 +32,8 @@ struct cuc_pkt {
 enum {
 	CUC_CMD_PING = 0,                       /* Perform a simple ping to the uC firmware */
 	CUC_CMD_BOARD_INFO = 1,                 /* Get board identification info */
+	CUC_CMD_I2C_READ = 2,                   /* Read an i2c device on the Cassini uC */
+	CUC_CMD_I2C_WRITE = 3,                  /* Write an i2c device on the Cassini uC */
 	CUC_CMD_GET_LOG = 12,                   /* Get a log message from the uC */
 	CUC_CMD_GET_FRU = 25,                   /* Get the FRU information for the device */
 	CUC_CMD_SET_FAN_PWM = 26,               /* Set fan to fixed speed w/ given PWM duty cycle */
@@ -81,6 +87,27 @@ struct cuc_board_info_rsp {
 	u8 board_type;
 	u8 board_rev;
 } __packed;
+
+enum {
+    I2C_CURRENT_ADDR_READ = 0,
+    I2C_RANDOM_ADDR8_READ,
+    I2C_RANDOM_ADDR16_READ,
+};
+
+struct cuc_i2c_read_req {
+    uint8_t bus;        /* The i2c bus number */
+    uint8_t addr;       /* The 7-bit i2c slave address */
+    uint8_t type;       /* Transaction type (current/random8/random16 read) */
+    uint8_t count;      /* Number of bytes to read/write */
+    uint16_t offset;    /* Offset in slave device to read from (if random) */
+}__attribute__((packed));
+
+struct cuc_i2c_write_req {
+    uint8_t bus;        /* The i2c bus number */
+    uint8_t addr;       /* The 7-bit i2c slave address */
+    uint8_t count;      /* Number of bytes to write */
+    uint8_t buf[0];
+}__attribute__((packed));
 
 struct cuc_set_fan_pwm_req_data {
 	/* PWM duty cycle value to set
