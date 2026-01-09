@@ -29,11 +29,11 @@ get_specfile_version() {
 }
 
 # Variables
-SPEC_FILE="$SCRIPT_DIR/cassini2-firmware-devel.spec"
+SPEC_FILE="$SCRIPT_DIR/cassini-firmware-headers.spec"
 INCLUDE_DIR="$SCRIPT_DIR/include"
 BUILD_DIR="$SCRIPT_DIR/build"
 VERSION=$(get_specfile_version "$SPEC_FILE")
-TARBALL_NAME="cassini2-firmware-devel-$VERSION.tar.gz"
+TARBALL_NAME="cassini-firmware-headers-$VERSION.tar.gz"
 RPMBUILD_DIR="$BUILD_DIR/rpmbuild"
 
 # Ensure required tools are installed
@@ -56,7 +56,7 @@ prepare_build_env() {
 create_tarball() {
     echo "Creating tarball from include directory..."
     tar --exclude="$TARBALL_NAME" \
-        -czf "$RPMBUILD_DIR/SOURCES/$TARBALL_NAME" --transform "s,^,cassini2-firmware-devel-$VERSION/," ./lib $SPEC_FILE
+        -czf "$RPMBUILD_DIR/SOURCES/$TARBALL_NAME" --transform "s,^,cassini-firmware-headers-$VERSION/," ./lib $SPEC_FILE
     echo "Tarball created: $RPMBUILD_DIR/SOURCES/$TARBALL_NAME"
 }
 

@@ -1,8 +1,8 @@
 Summary: Cassini firmware headers
-Name: cassini2-firmware-devel
-Version:        0.1
-Release:        1%{?dist}
-License: MIT
+Name:		cassini-firmware-headers
+Version:    0.1
+Release:    1%{?dist}
+License:	MIT
 Source: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
